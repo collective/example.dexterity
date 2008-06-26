@@ -1,0 +1,5 @@
+<object name="portal_types">
+ <object name="example.ttwpage" meta_type="Dexterity FTI" />
+ <object name="example.schemapage" meta_type="Dexterity FTI" />
+ <object name="example.filefolder" meta_type="Dexterity FTI" />
+</object>

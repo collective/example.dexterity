@@ -1,0 +1,28 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:grok="http://namespaces.zope.org/grok"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="example.dexterity">
+
+    <include package="plone.dexterity" />
+    
+    <grok:grok package="." />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="Example Dexterity content"
+        description="A test case for Dexterity"
+        directory="profiles/default"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+        
+    <!-- Register a custom view for the page type -->
+    <browser:page
+        for=".page.IPage"
+        name="view"
+        permission="zope2.View"
+        template="page.pt"
+        />
+
+</configure>
