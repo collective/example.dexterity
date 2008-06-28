@@ -13,6 +13,7 @@
  <property name="allowed_content_types">
      <element value="example.ttwpage" />
      <element value="example.schemapage" />
+     <element value="example.pypage" />
  </property>
  
  <property name="klass">plone.dexterity.content.Container</property>
