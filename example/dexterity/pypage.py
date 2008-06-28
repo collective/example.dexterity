@@ -1,9 +1,9 @@
 from zope.interface import implements, Interface
 from zope import schema
 
-from plone.dexterity.api import Schema, Item
+from plone.dexterity import api
 
-class IPyPage(Schema):
+class IPyPage(api.Schema):
     
     title = schema.TextLine(title=u"Title")
     
@@ -13,11 +13,16 @@ class IPyPage(Schema):
     
     body = schema.Text(title=u"Body text")
 
-class PyPage(Item):
+class PyPage(api.Item):
     implements(IPyPage)
-    
-    title = u""
-    body = u""
+
+    # Use the meta_type directive if you require the class to be registered 
+    # as a Zope 2 class with a meta_type and the rest. The default add
+    # permission is cmf.AddPortalContent, but you can use the add_permission
+    # directive to specify a different one.
+    # 
+    # api.meta_type("PyPage")
+    # api.add_permission("cmf.AddPortalContent")
     
     @property
     def summary(self):
