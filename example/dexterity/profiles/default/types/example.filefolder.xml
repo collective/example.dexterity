@@ -28,7 +28,6 @@
  <property name="behaviors"/>
  
  <!-- View information -->
- <property name="immediate_view">edit</property>
  <property name="default_view">folder_listing</property>
  <property name="default_view_fallback">True</property>
  <property name="view_methods">

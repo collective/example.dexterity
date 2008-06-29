@@ -5,7 +5,7 @@
  
  <!-- Basic information -->
  <property name="title">Example Python-only Page</property>
- <property name="description" i18n:translate="">This page has no XML and uses a concrete class</property>
+ <property name="description" i18n:translate="">This page has no XML model, and uses a concrete class</property>
  <property name="content_icon">document_icon.gif</property>
  <property name="global_allow">True</property>
  <property name="allow_discussion">False</property>
@@ -25,7 +25,6 @@
  <property name="behaviors"/>
  
  <!-- View information -->
- <property name="immediate_view">edit</property>
  <property name="default_view">view</property>
  <property name="default_view_fallback">False</property>
  <property name="view_methods">

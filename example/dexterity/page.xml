@@ -1,5 +1,10 @@
 <?xml version="1.0" ?>
 <model xmlns="http://namespaces.plone.org/supermodel/schema">
+    
+    <!-- This model is loaded at startup and used to populate the IPage
+         interface in page.py.
+      -->
+    
     <schema>
         <field name="title" type="zope.schema.TextLine">
             <title>Page title</title>
@@ -17,4 +22,5 @@
             <required>True</required>
         </field>
     </schema>
+    
 </model>

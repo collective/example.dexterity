@@ -1,5 +1,8 @@
 <?xml version="1.0" ?>
 <model xmlns="http://namespaces.plone.org/supermodel/schema">
+    
+    <!-- This model is referenced in the example.filefolder FTI -->
+    
     <schema>
         <field name="title" type="zope.schema.TextLine">
             <title>Folder title</title>
@@ -12,4 +15,5 @@
             <required>False</required>
         </field>
     </schema>
+    
 </model>

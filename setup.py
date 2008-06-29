@@ -25,6 +25,7 @@ setup(name='example.dexterity',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'plone.dexterity',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

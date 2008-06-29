@@ -3,6 +3,14 @@ from zope import schema
 
 from plone.dexterity import api
 
+# This file contains an example of a type that uses a custom class (PyPage)
+# and a Python-only interface (IPyPage). We could have loaded IPyPage from
+# a model file, of course - see page.py.
+# 
+# Note that if the schema promises zope.schema fields that are not set on
+# the class, the grokker for api.Item (or api.Container) will set these on
+# the class, initialising them to field defaults.
+
 class IPyPage(api.Schema):
     
     title = schema.TextLine(title=u"Title")
@@ -11,7 +19,9 @@ class IPyPage(api.Schema):
                           description=u"Summary of the body",
                           readonly=True)
     
-    body = schema.Text(title=u"Body text")
+    body = schema.Text(title=u"Body text",
+                       required=False,
+                       default=u"Body text goes here")
 
 class PyPage(api.Item):
     implements(IPyPage)
@@ -26,7 +36,10 @@ class PyPage(api.Item):
     
     @property
     def summary(self):
-        return "%s..." % self.body[:30]
+        if self.body:
+            return "%s..." % self.body[:30]
+        else:
+            return ""
         
     def Description(self):
         return self.summary

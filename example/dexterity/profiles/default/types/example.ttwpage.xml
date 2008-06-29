@@ -29,6 +29,11 @@
               &lt;title&gt;Description&lt;/title&gt;
               &lt;required&gt;False&lt;/required&gt;
           &lt;/field&gt;
+          &lt;field name="body" type="zope.schema.Text"&gt;
+              &lt;title&gt;Body text&lt;/title&gt;
+              &lt;required&gt;False&lt;/required&gt;
+              &lt;default&gt;Default body text&lt;/default&gt;
+          &lt;/field&gt;
       &lt;/schema&gt;
   &lt;/model&gt;
  </property>
@@ -38,13 +43,12 @@
  <property name="behaviors"/>
  
  <!-- View information -->
- <property name="immediate_view">edit</property>
  <property name="default_view">view</property>
  <property name="default_view_fallback">False</property>
  <property name="view_methods">
   <element value="view"/>
  </property>
- 
+
  <!-- Method aliases -->
  <alias from="(Default)" to="(selected layout)"/>
  <alias from="edit" to="@@edit"/>

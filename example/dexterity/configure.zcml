@@ -5,10 +5,13 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="example.dexterity">
 
+    <!-- Include our dependencies -->
     <include package="plone.dexterity" />
     
+    <!-- Grok the package to initialise schema interfaces and content classes -->
     <grok:grok package="." />
 
+    <!-- Register an extension profile to make the product installable -->
     <genericsetup:registerProfile
         name="default"
         title="Example Dexterity content"
@@ -17,7 +20,7 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
         
-    <!-- Register a custom view for the page type -->
+    <!-- Register a custom view for the IPage type -->
     <browser:page
         for=".page.IPage"
         name="view"
