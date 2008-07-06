@@ -18,7 +18,7 @@
             <required>False</required>
         </field>
         <field name="body" type="zope.schema.Text"
-            widget:factory="plone.z3cform.wysiwyg.widget.WysiwygFieldWidget">
+            widget:factory="plone.dexterity.api.WysiwygWidget">
             <title>Body text</title>
             <description>Body text for the page</description>
             <required>True</required>

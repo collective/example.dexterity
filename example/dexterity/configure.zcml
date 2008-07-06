@@ -3,6 +3,7 @@
     xmlns:grok="http://namespaces.zope.org/grok"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="example.dexterity">
 
     <!-- Include our dependencies -->
@@ -26,6 +27,16 @@
         name="view"
         permission="zope2.View"
         template="page.pt"
+        />
+        
+    <!-- Register a custom behavior -->
+    <adapter factory=".behavior.TaggingAnnotationsFactory" />
+    <plone:behavior
+        title="Example behavior"
+        description="An example behavior with a field"
+        interface=".behavior.ITaggingBehavior"
+        factory=".behavior.TaggingBehavior"
+        for="zope.annotation.interfaces.IAnnotatable"
         />
 
 </configure>

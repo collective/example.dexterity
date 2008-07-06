@@ -25,7 +25,9 @@
  <property name="add_permission">Add portal content</property>
  
  <!-- enabled behaviors -->
- <property name="behaviors"/>
+ <property name="behaviors">
+     <element value="example.dexterity.behavior.ITaggingBehavior" />
+ </property>
  
  <!-- View information -->
  <property name="default_view">view</property>
