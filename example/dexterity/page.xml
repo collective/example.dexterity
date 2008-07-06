@@ -1,5 +1,6 @@
 <?xml version="1.0" ?>
-<model xmlns="http://namespaces.plone.org/supermodel/schema">
+<model xmlns="http://namespaces.plone.org/supermodel/schema"
+       xmlns:widget="http://namespaces.plone.org/dexterity/widget">
     
     <!-- This model is loaded at startup and used to populate the IPage
          interface in page.py.
@@ -16,7 +17,8 @@
             <description>Short summary</description>
             <required>False</required>
         </field>
-        <field name="body" type="zope.schema.Text">
+        <field name="body" type="zope.schema.Text"
+            widget:factory="plone.z3cform.wysiwyg.widget.WysiwygFieldWidget">
             <title>Body text</title>
             <description>Body text for the page</description>
             <required>True</required>
