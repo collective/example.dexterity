@@ -1,12 +1,14 @@
 from persistent import Persistent
 
-from zope.interface import implements, Interface
+from zope.interface import implements, directlyProvides, Interface
 from zope.component import adapts
 
 from zope import schema
 
 from zope.annotation.interfaces import IAnnotatable
 from zope.annotation import factory
+
+from plone.dexterity.api import IFormFieldProvider
 
 from BTrees.OOBTree import OOSet
 
@@ -22,6 +24,11 @@ class ITagging(Interface):
                        description=u"Tags for this object",
                        value_type=schema.Choice(values=["Tag 1", "Tag 2", "Tag 3"]),
                        required=False)
+
+# Specify that the fields in this interface should be used in the add/edit forms.
+# We could also have registered an adapter from ITagging to IFormFieldProvider
+# if we wanted to use different fields. 
+directlyProvides(ITagging, IFormFieldProvider)
 
 class TaggingAnnotations(Persistent):
     """Persistent storage for tags in annotations. This uses the "persistent 
