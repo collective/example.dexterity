@@ -24,7 +24,11 @@ class ITagging(Interface):
                        required=False)
 
 class TaggingAnnotations(Persistent):
-    """Persistent storage for tags in annotations
+    """Persistent storage for tags in annotations. This uses the "persistent 
+    adapter" pattern seen in zope.annotation's README.txt. Of course, a
+    regular adapter from context to ITagging would work just as well, but 
+    there'd be more work persisting values. If you use a simple adapter,
+    don't forget to make __init__() take a 'context' parameter.
     """
     
     implements(ITagging)
