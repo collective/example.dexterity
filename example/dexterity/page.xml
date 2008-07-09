@@ -13,11 +13,10 @@
             <description>A short and punchy title</description>
             <required>True</required>
         </field>
-        <field name="description" type="zope.schema.TextLine"
-            form:fieldset="Metadata">
+        <field name="description" type="zope.schema.TextLine">
             <title>Description</title>
             <description>Short summary</description>
-            <default>Secret description</default>
+            <default>Default description</default>
             <required>True</required>
         </field>
         <field name="body" type="zope.schema.Text"
@@ -27,6 +26,20 @@
             <required>False</required>
         </field>
        
+        <fieldset name="metadata" label="Metadata">
+            <field name="target_audience" type="zope.schema.Text">
+                <title>Target audience</title>
+                <required>False</required>
+            </field>
+        </fieldset>
+        
+        <!-- Fields not used in the forms -->
+        <field form:omitted="true" name="magic_number" type="zope.schema.TextLine">
+            <title>Magic number</title>
+            <description>This is not something for users to worry about</description>
+            <required>False</required>
+        </field>
+        
     </schema>
     
 </model>

@@ -18,6 +18,7 @@ class ITagging(api.Schema):
     
     api.order_before(enabled='description')
     api.omitted('tags')
+    api.fieldset('tagging', label=u"Tagging", fields=['enabled', 'tags'])
     
     enabled = schema.Bool(title=u"Tagging enabled",
                           required=False,

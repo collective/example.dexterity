@@ -15,9 +15,8 @@ class IPyPage(api.Schema):
     
     api.omitted('dummy')
     api.mode(secret='hidden')
-    api.fieldset(footer='Secondary')
-    api.widget(body='plone.dexterity.api.WysiwygWidget',
-               footer=api.WysiwygWidget)
+    api.fieldset('extra', label=u"Extra info", fields=['footer', 'dummy'])    
+    api.widget(body='plone.dexterity.api.WysiwygWidget', footer=api.WysiwygWidget)
     
     title = schema.TextLine(title=u"Title")
     
@@ -31,10 +30,12 @@ class IPyPage(api.Schema):
                        
     footer = schema.Text(title=u"Footer text",
                        required=False)
-                       
+    
     dummy = schema.Text(title=u"Dummy")
     
+    
     secret = schema.TextLine(title=u"Secret", default=u"Secret stuff")
+    
 
 class PyPage(api.Item):
     implements(IPyPage)

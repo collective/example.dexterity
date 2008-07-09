@@ -22,7 +22,9 @@
  <property name="model_file"></property>
  
  <!-- List of enabled behaviors -->
- <property name="behaviors"/>
+ <property name="behaviors">
+     <element value="example.dexterity.behavior.ITagging" />
+ </property>
  
  <!-- View information -->
  <property name="default_view">view</property>
