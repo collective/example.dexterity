@@ -8,13 +8,16 @@ from zope import schema
 from zope.annotation.interfaces import IAnnotatable
 from zope.annotation import factory
 
-from plone.dexterity.api import IFormFieldProvider
+from plone.dexterity import api
 
 from BTrees.OOBTree import OOSet
 
-class ITagging(Interface):
+class ITagging(api.Schema):
     """Behavior interface to make a type support tagging.
     """
+    
+    api.order_before(enabled='description')
+    api.omitted('tags')
     
     enabled = schema.Bool(title=u"Tagging enabled",
                           required=False,
@@ -28,7 +31,7 @@ class ITagging(Interface):
 # Specify that the fields in this interface should be used in the add/edit forms.
 # We could also have registered an adapter from ITagging to IFormFieldProvider
 # if we wanted to use different fields. 
-directlyProvides(ITagging, IFormFieldProvider)
+directlyProvides(ITagging, api.IFormFieldProvider)
 
 class TaggingAnnotations(Persistent):
     """Persistent storage for tags in annotations. This uses the "persistent 
