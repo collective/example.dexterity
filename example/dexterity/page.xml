@@ -1,28 +1,32 @@
 <?xml version="1.0" ?>
 <model xmlns="http://namespaces.plone.org/supermodel/schema"
-       xmlns:widget="http://namespaces.plone.org/dexterity/widget">
+       xmlns:form="http://namespaces.plone.org/dexterity/form">
     
     <!-- This model is loaded at startup and used to populate the IPage
          interface in page.py.
       -->
     
     <schema>
+        
         <field name="title" type="zope.schema.TextLine">
             <title>Page title</title>
             <description>A short and punchy title</description>
             <required>True</required>
         </field>
-        <field name="description" type="zope.schema.Text">
+        <field name="description" type="zope.schema.TextLine"
+            form:fieldset="Metadata">
             <title>Description</title>
             <description>Short summary</description>
-            <required>False</required>
-        </field>
-        <field name="body" type="zope.schema.Text"
-            widget:factory="plone.dexterity.api.WysiwygWidget">
-            <title>Body text</title>
-            <description>Body text for the page</description>
+            <default>Secret description</default>
             <required>True</required>
         </field>
+        <field name="body" type="zope.schema.Text"
+            form:widget="plone.dexterity.api.WysiwygWidget">
+            <title>Body text</title>
+            <description>Body text for the page</description>
+            <required>False</required>
+        </field>
+       
     </schema>
     
 </model>
