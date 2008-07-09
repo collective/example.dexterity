@@ -13,6 +13,12 @@ from plone.dexterity import api
 
 class IPyPage(api.Schema):
     
+    api.omitted('dummy')
+    api.mode(secret='hidden')
+    api.fieldset(footer='Secondary')
+    api.widget(body='plone.dexterity.api.WysiwygWidget',
+               footer=api.WysiwygWidget)
+    
     title = schema.TextLine(title=u"Title")
     
     summary = schema.Text(title=u"Summary",
@@ -22,6 +28,13 @@ class IPyPage(api.Schema):
     body = schema.Text(title=u"Body text",
                        required=False,
                        default=u"Body text goes here")
+                       
+    footer = schema.Text(title=u"Footer text",
+                       required=False)
+                       
+    dummy = schema.Text(title=u"Dummy")
+    
+    secret = schema.TextLine(title=u"Secret", default=u"Secret stuff")
 
 class PyPage(api.Item):
     implements(IPyPage)
