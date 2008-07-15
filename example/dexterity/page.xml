@@ -20,7 +20,7 @@
             <required>True</required>
         </field>
         <field name="body" type="zope.schema.Text"
-            form:widget="plone.dexterity.api.WysiwygWidget">
+            form:widget="plone.app.z3cform.wysiwyg.WysiwygFieldWidget">
             <title>Body text</title>
             <description>Body text for the page</description>
             <required>False</required>
