@@ -3,4 +3,5 @@
  <object name="example.schemapage" meta_type="Dexterity FTI" />
  <object name="example.filefolder" meta_type="Dexterity FTI" />
  <object name="example.pypage" meta_type="Dexterity FTI" />
+ <object name="example.fspage" meta_type="Dexterity FTI" />
 </object>

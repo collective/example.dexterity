@@ -14,6 +14,7 @@
      <element value="example.ttwpage" />
      <element value="example.schemapage" />
      <element value="example.pypage" />
+     <element value="example.fspage" />
  </property>
  
  <property name="klass">plone.dexterity.content.Container</property>

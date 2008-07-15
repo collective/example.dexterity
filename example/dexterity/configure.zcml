@@ -29,6 +29,34 @@
         template="page.pt"
         />
         
+    <!-- Register add, edit and view views for the IFSPage type -->
+    
+    <utility
+        component=".fspage.FSPageFactory"
+        name="example.fspage"
+        provides="zope.component.interfaces.IFactory"
+        />
+    
+    <browser:page
+        name="example.fspage"
+        for="zope.app.container.interfaces.IAdding"
+        class=".fspage.AddView"
+        permission="cmf.AddPortalContent"
+        />
+    <browser:page
+        name="edit"
+        for=".fspage.IFSPage"
+        class=".fspage.EditView"
+        permission="cmf.ModifyPortalContent"
+        />
+        
+    <browser:page
+        name="view"
+        for=".fspage.IFSPage"
+        template="fspage.pt"
+        permission="zope2.View"
+        />
+        
     <!-- Register a custom behavior that's available on any annotatable
          object. The behavior can be enabled by adding its dotted name to
          the 'behavior' field of the FTI. By default, example.schemapage
