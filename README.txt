@@ -30,7 +30,19 @@ The types defined here include:
  
     A non-folderish page type that has a "real" filesystem interface created
     entirely with Python, and a specific filesystem class. There is no XML
-    involved at all.
+    involved at all. Grok-like directives are used to give hints about how to
+    render add- and edit-forms, which are based on generic implementations.
+    The grokker will also register a default factory and add view adapter
+    factory.
+    
+ example.fspage
+ 
+    A non-folderish page type that has a "real" filesystem interface created
+    entirely with Python, a specific filesystem class, and filesystem add-
+    and edit forms. Again, there is no XML involved. The only local component
+    that will be registered is the local utility used to look up the FTI
+    object.
+    
     
 Other things to note:
 
@@ -39,11 +51,16 @@ Other things to note:
 
  - The package is "grokked" with the line <grok:grok package="." /> in
    configure.zcml. This takes care of populating the IPage interface
-   in page.py with fields from its model file (page.xml) and setting up
-   the content class in pypage.py.
+   in page.py with fields from its model file (page.xml), setting up
+   the content classes in pypage.py and fspage.py and performing a few other
+   boilerplate registrations.
    
  - The custom view used for IPage is called "view", thus overriding the 
    default view registered for all Dexterity content.
 
- - The view defined using page.pt assumes the attributes of IPage are 
-   available on the context, i.e. it uses TAL statements like "context/body".
+ - The custom edit view used for IFSPage is called "edit", thus overriding the
+   default view registered for all Dexterity content.
+
+ - The views defined in e.g. page.pt assumes that standard schema attributes
+   are  available on the context, i.e. they use TAL statements like
+   "context/body".

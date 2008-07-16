@@ -41,15 +41,8 @@ class IPyPage(api.Schema):
 
 class PyPage(api.Item):
     implements(IPyPage)
+    api.portal_type('example.pypage')
 
-    # Use the meta_type directive if you require the class to be registered 
-    # as a Zope 2 class with a meta_type and the rest. The default add
-    # permission is cmf.AddPortalContent, but you can use the add_permission
-    # directive to specify a different one.
-    # 
-    # api.meta_type("PyPage")
-    # api.add_permission("cmf.AddPortalContent")
-    
     @property
     def summary(self):
         if self.body:
