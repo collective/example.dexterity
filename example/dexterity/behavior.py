@@ -1,3 +1,6 @@
+"""This file contains an example of a behavior that makes content taggable.
+"""
+
 from persistent import Persistent
 
 from zope.interface import implements, directlyProvides, Interface

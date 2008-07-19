@@ -1,3 +1,9 @@
+"""This file contains an example of a more conventional filesystem page type.
+It has a schema, add- and edit- forms using z3c.form and a class. It also
+registers a factory utility explicitly, although it would have gained one
+anyway.
+"""
+
 from zope.interface import implements
 from zope import schema
 
@@ -10,17 +16,7 @@ from z3c.form import group, field
 
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 
-# This file contains an example of a more conventional filesystem page type
-# The only thing that's done implicitly is the grokking of the class to
-# do the five:registerClass dance, and even that could be done with ZCML.
-
-# TODO: To make this more pleasant, we could take some patterns from Grok.
-# For example:
-#   
-#   - Don't require separate form and view classes for add/edit forms
-#   - Register add/edit forms using grokkers for views
-#   - Register default view using grokker and tie to template by name
-#   - Register factory utility using grokker for class
+# 1. Define schema interface
 
 class IFSPage(api.Schema):
     
@@ -36,6 +32,8 @@ class IFSPage(api.Schema):
     details = schema.Text(title=u"Details",
                           required=False)
 
+# 2. Define fields and groups (fieldsets)
+
 fields = field.Fields(IFSPage, omitReadOnly=True).omit('details')
 fields['body'].widgetFactory = WysiwygFieldWidget
 
@@ -43,16 +41,18 @@ class ExtraFieldsGroup(group.Group):
     fields = field.Fields(IFSPage).select('details')
     label = u"Extra fields"
 
+# 3. Define add form and add view that uses it
+
 class AddForm(add.DefaultAddForm):
     fields = fields
     groups = (ExtraFieldsGroup,)
+    portal_type = 'example.fspage'
     
 class AddView(add.DefaultAddView):
     form = AddForm
-    
-    def __init__(self, context, request):
-        super(AddView, self).__init__(context, request, portal_type='example.fspage')
-    
+
+# 4. Define edit form and edit view that uses it
+
 class EditForm(edit.DefaultEditForm):
     fields = fields
     groups = (ExtraFieldsGroup,)
@@ -60,9 +60,11 @@ class EditForm(edit.DefaultEditForm):
 class EditView(edit.DefaultEditView):
     form = EditForm
 
+# 5. Define content class
+
 class FSPage(api.Item):
     implements(IFSPage)
-    portal_type = 'example.fspage'
+    api.portal_type('example.fspage')
     
     def __init__(self, id=None, title=None, description=None, body=None, details=None):
         super(FSPage, self).__init__(id)
@@ -71,5 +73,5 @@ class FSPage(api.Item):
         self.body = body
         self.details = details
         
-# If this is not created and registered, a default implementation will be provided
+# 6. Define factory (optional)
 FSPageFactory = Factory(FSPage)

@@ -1,18 +1,22 @@
+"""This file contains an example of a type that uses a custom class (PyPage)
+and a Python-only interface (IPyPage). We could have loaded IPyPage from
+a model file, of course - see page.py.
+
+Note that if the schema promises zope.schema fields that are not set on
+the class, the grokker for api.Item (or api.Container) will set these on
+the class, initialising them to field defaults.
+"""
+
 from zope.interface import implements, Interface
 from zope import schema
 
 from plone.dexterity import api
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 
-# This file contains an example of a type that uses a custom class (PyPage)
-# and a Python-only interface (IPyPage). We could have loaded IPyPage from
-# a model file, of course - see page.py.
-# 
-# Note that if the schema promises zope.schema fields that are not set on
-# the class, the grokker for api.Item (or api.Container) will set these on
-# the class, initialising them to field defaults.
-
 class IPyPage(api.Schema):
+    
+    # Here, we give form UI hints in the schema. Look at fspage.py for a more
+    # complete example that uses custom forms.
     
     api.omitted('dummy')
     api.mode(secret='hidden')
