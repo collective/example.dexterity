@@ -1,24 +1,20 @@
 """This file contains an example of a more conventional filesystem page type.
-It has a schema, add- and edit- forms using z3c.form and a class. It also
-registers a factory utility explicitly, although it would have gained one
-anyway.
+It has a schema, add- and edit- forms using z3c.form and a class.
 """
 
-from zope.interface import implements
+from five import grok
+from plone.dexterity import api as dexterity
+
 from zope import schema
 
-from zope.component.factory import Factory
-
-from plone.dexterity import api
-from plone.dexterity.browser import add, edit
-
 from z3c.form import group, field
+from plone.z3cform import layout
 
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 
 # 1. Define schema interface
 
-class IFSPage(api.Schema):
+class IFSPage(dexterity.Schema):
     
     title = schema.TextLine(title=u"Title")
     
@@ -32,7 +28,28 @@ class IFSPage(api.Schema):
     details = schema.Text(title=u"Details",
                           required=False)
 
-# 2. Define fields and groups (fieldsets)
+# 2. Define content class
+
+class FSPage(dexterity.Item):
+    grok.implements(IFSPage)
+    dexterity.portal_type('example.fspage')
+    
+    def __init__(self, id=None, title=None, description=None, body=None, details=None):
+        self.id = id # required - or call super() with this argument
+        self.title = title
+        self.description = description
+        self.body = body
+        self.details = details
+
+# 4. Define view. The template is automatically located in
+#  fspage_templates/view.pt in this directory.
+
+class View(grok.View):
+    grok.name('view')
+    grok.require('zope2.View')
+
+# 5. Define add and edit forms. Here we also show how to set up fieldsets
+#  using groups
 
 fields = field.Fields(IFSPage, omitReadOnly=True).omit('details')
 fields['body'].widgetFactory = WysiwygFieldWidget
@@ -41,37 +58,18 @@ class ExtraFieldsGroup(group.Group):
     fields = field.Fields(IFSPage).select('details')
     label = u"Extra fields"
 
-# 3. Define add form and add view that uses it
-
-class AddForm(add.DefaultAddForm):
+class AddForm(dexterity.DefaultAddForm):
     fields = fields
     groups = (ExtraFieldsGroup,)
     portal_type = 'example.fspage'
-    
-class AddView(add.DefaultAddView):
+
+# TODO: Turn into simple wrapper, and make optional with grokker
+import plone.dexterity.browser.add
+class AddView(plone.dexterity.browser.add.DefaultAddView):
     form = AddForm
 
-# 4. Define edit form and edit view that uses it
-
-class EditForm(edit.DefaultEditForm):
+class EditForm(dexterity.DefaultEditForm):
     fields = fields
     groups = (ExtraFieldsGroup,)
-    
-class EditView(edit.DefaultEditView):
-    form = EditForm
 
-# 5. Define content class
-
-class FSPage(api.Item):
-    implements(IFSPage)
-    api.portal_type('example.fspage')
-    
-    def __init__(self, id=None, title=None, description=None, body=None, details=None):
-        super(FSPage, self).__init__(id)
-        self.title = title
-        self.description = description
-        self.body = body
-        self.details = details
-        
-# 6. Define factory (optional)
-FSPageFactory = Factory(FSPage)
+EditView = layout.wrap_form(EditForm) # TODO: Make optional with grokker

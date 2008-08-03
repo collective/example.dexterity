@@ -3,26 +3,25 @@ and a Python-only interface (IPyPage). We could have loaded IPyPage from
 a model file, of course - see page.py.
 
 Note that if the schema promises zope.schema fields that are not set on
-the class, the grokker for api.Item (or api.Container) will set these on
+the class, the grokker for dexterity.Item (or dexterity.Container) will set these on
 the class, initialising them to field defaults.
 """
 
 from zope.interface import implements, Interface
 from zope import schema
 
-from plone.dexterity import api
+from plone.dexterity import api as dexterity
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 
-class IPyPage(api.Schema):
+class IPyPage(dexterity.Schema):
     
     # Here, we give form UI hints in the schema. Look at fspage.py for a more
     # complete example that uses custom forms.
     
-    api.omitted('dummy')
-    api.mode(secret='hidden')
-    api.fieldset('extra', label=u"Extra info", fields=['footer', 'dummy'])    
-    api.widget(body='plone.app.z3cform.wysiwyg.WysiwygFieldWidget',
-               footer=WysiwygFieldWidget)
+    dexterity.omitted('dummy')
+    dexterity.mode(secret='hidden')
+    dexterity.fieldset('extra', label=u"Extra info", fields=['footer', 'dummy'])    
+    dexterity.widget(body='plone.app.z3cform.wysiwyg.WysiwygFieldWidget', footer=WysiwygFieldWidget)
     
     title = schema.TextLine(title=u"Title")
     
@@ -43,9 +42,9 @@ class IPyPage(api.Schema):
     secret = schema.TextLine(title=u"Secret", default=u"Secret stuff")
     
 
-class PyPage(api.Item):
+class PyPage(dexterity.Item):
     implements(IPyPage)
-    api.portal_type('example.pypage')
+    dexterity.portal_type('example.pypage')
 
     @property
     def summary(self):

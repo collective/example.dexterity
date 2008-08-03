@@ -31,30 +31,19 @@
         
     <!-- Register add, edit and view views for the IFSPage type -->
     
-    <utility
-        component=".fspage.FSPageFactory"
-        name="example.fspage"
-        provides="zope.component.interfaces.IFactory"
-        />
-    
+    <!-- TODO: Make these optional once we have z3c.form grokkers -->
     <browser:page
         name="example.fspage"
         for="zope.app.container.interfaces.IAdding"
         class=".fspage.AddView"
         permission="cmf.AddPortalContent"
         />
+    
     <browser:page
         name="edit"
         for=".fspage.IFSPage"
         class=".fspage.EditView"
         permission="cmf.ModifyPortalContent"
-        />
-        
-    <browser:page
-        name="view"
-        for=".fspage.IFSPage"
-        template="fspage.pt"
-        permission="zope2.View"
         />
         
     <!-- Register a custom behavior that's available on any annotatable
