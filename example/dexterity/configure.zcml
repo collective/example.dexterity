@@ -21,14 +21,6 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
         
-    <!-- Register a custom view for the IPage type -->
-    <browser:page
-        for=".page.IPage"
-        name="view"
-        permission="zope2.View"
-        template="page.pt"
-        />
-        
     <!-- Register add, edit and view views for the IFSPage type -->
     
     <!-- TODO: Make these optional once we have z3c.form grokkers -->

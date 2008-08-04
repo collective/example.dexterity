@@ -45,7 +45,6 @@ class FSPage(dexterity.Item):
 #  fspage_templates/view.pt in this directory.
 
 class View(grok.View):
-    grok.name('view')
     grok.require('zope2.View')
 
 # 5. Define add and edit forms. Here we also show how to set up fieldsets
