@@ -17,7 +17,7 @@ from five import grok
 from plone.dexterity import api as dexterity
 
 class IPage(dexterity.Schema):
-    dexterity.model("page.xml")
+    dexterity.model("models/page.xml")
     
     # It is possible to add additional fields and methods can be added here
     # if necessary. However, without a custom class, we usually can't

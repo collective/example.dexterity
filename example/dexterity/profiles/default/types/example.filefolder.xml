@@ -23,7 +23,7 @@
  <!-- Schema - here loaded from a file relative to a package -->
  <property name="schema"></property>
  <property name="model_source"></property>
- <property name="model_file">example.dexterity:folder.xml</property>
+ <property name="model_file">example.dexterity:models/folder.xml</property>
  
  <!-- List of enabled behaviors -->
  <property name="behaviors"/>
