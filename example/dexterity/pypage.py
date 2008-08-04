@@ -5,6 +5,11 @@ a model file, of course - see page.py.
 Note that if the schema promises zope.schema fields that are not set on
 the class, the grokker for dexterity.Item (or dexterity.Container) will set these on
 the class, initialising them to field defaults.
+
+In the example below, we are using various directives to give hints about
+how the form should be rendered. We normally would only use one or two of
+these for convenience. For complex forms, it is easier to just use the
+z3c.form API. Take a look at fspage.py to see a more complete example of that.
 """
 
 from zope.interface import implements, Interface
@@ -14,9 +19,6 @@ from plone.dexterity import api as dexterity
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 
 class IPyPage(dexterity.Schema):
-    
-    # Here, we give form UI hints in the schema. Look at fspage.py for a more
-    # complete example that uses custom forms.
     
     dexterity.omitted('dummy')
     dexterity.mode(secret='hidden')

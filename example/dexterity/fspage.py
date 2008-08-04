@@ -1,5 +1,22 @@
 """This file contains an example of a more conventional filesystem page type.
 It has a schema, add- and edit- forms using z3c.form and a class.
+
+We first define a standard schema. Deriving from dexterity.Schema is optional,
+but demonstrates conistency and makes it possible to use the type of
+directives seen in pypage.py, if you so wish.
+
+Then, we define the content class. This derives from dexterity.Item (there is
+also dexterity.Container for folderish types) and declares its portal type
+using the dexterity.portal_type() directive. The construct ensures that all
+the fields in the interface are set correctly.
+
+Next, we define a view called @@view. This will look for a template in
+fspage_templates/view.pt, since the view class is called "View" and this
+module is called "fspage.py".
+
+We then define custom add and edit forms, using z3c.form via the
+plone.z3cform integration package. Here, we use z3c.form's "groups" support
+to split our form fields into two fieldsets.
 """
 
 from five import grok
@@ -9,10 +26,7 @@ from zope import schema
 
 from z3c.form import group, field
 from plone.z3cform import layout
-
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
-
-# 1. Define schema interface
 
 class IFSPage(dexterity.Schema):
     
@@ -28,8 +42,6 @@ class IFSPage(dexterity.Schema):
     details = schema.Text(title=u"Details",
                           required=False)
 
-# 2. Define content class
-
 class FSPage(dexterity.Item):
     grok.implements(IFSPage)
     dexterity.portal_type('example.fspage')
@@ -41,14 +53,9 @@ class FSPage(dexterity.Item):
         self.body = body
         self.details = details
 
-# 4. Define view. The template is automatically located in
-#  fspage_templates/view.pt in this directory.
-
 class View(grok.View):
+    grok.context(IFSPage)
     grok.require('zope2.View')
-
-# 5. Define add and edit forms. Here we also show how to set up fieldsets
-#  using groups
 
 fields = field.Fields(IFSPage, omitReadOnly=True).omit('details')
 fields['body'].widgetFactory = WysiwygFieldWidget
@@ -57,7 +64,7 @@ class ExtraFieldsGroup(group.Group):
     fields = field.Fields(IFSPage).select('details')
     label = u"Extra fields"
 
-class AddForm(dexterity.DefaultAddForm):
+class AddForm(dexterity.AddForm):
     fields = fields
     groups = (ExtraFieldsGroup,)
     portal_type = 'example.fspage'
@@ -67,7 +74,7 @@ import plone.dexterity.browser.add
 class AddView(plone.dexterity.browser.add.DefaultAddView):
     form = AddForm
 
-class EditForm(dexterity.DefaultEditForm):
+class EditForm(dexterity.EditForm):
     fields = fields
     groups = (ExtraFieldsGroup,)
 
