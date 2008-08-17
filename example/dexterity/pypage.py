@@ -12,10 +12,10 @@ these for convenience. For complex forms, it is easier to just use the
 z3c.form API. Take a look at fspage.py to see a more complete example of that.
 """
 
-from zope.interface import implements, Interface
+from five import grok
 from zope import schema
+from plone import dexterity
 
-from plone.dexterity import api as dexterity
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 
 class IPyPage(dexterity.Schema):
@@ -23,7 +23,8 @@ class IPyPage(dexterity.Schema):
     dexterity.omitted('dummy')
     dexterity.mode(secret='hidden')
     dexterity.fieldset('extra', label=u"Extra info", fields=['footer', 'dummy'])    
-    dexterity.widget(body='plone.app.z3cform.wysiwyg.WysiwygFieldWidget', footer=WysiwygFieldWidget)
+    dexterity.widget(body='plone.app.z3cform.wysiwyg.WysiwygFieldWidget', # we can use a dotted name...
+                     footer=WysiwygFieldWidget)                           # or an actual class
     
     title = schema.TextLine(title=u"Title")
     
@@ -45,7 +46,7 @@ class IPyPage(dexterity.Schema):
     
 
 class PyPage(dexterity.Item):
-    implements(IPyPage)
+    grok.implements(IPyPage)
     dexterity.portal_type('example.pypage')
 
     @property

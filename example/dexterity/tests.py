@@ -2,7 +2,7 @@ import unittest
 import example.dexterity
 
 from zope.testing import doctestunit
-from zope.component import testing
+from zope.component import testing, getMultiAdapter
 
 from zope.component import createObject
 
@@ -20,6 +20,7 @@ from example.dexterity.pypage import PyPage
 
 @onsetup
 def setup_product():
+    zcml.load_config('meta.zcml', example.dexterity)
     zcml.load_config('configure.zcml', example.dexterity)
 
     # NOTE: There is no need to call ztc.installPackage() since this package
@@ -38,6 +39,7 @@ class IntegrationTests(ptc.PloneTestCase):
         self.folder.invokeFactory('example.pypage', 'pp')
         self.folder.invokeFactory('example.schemapage', 'sp')
         self.folder.invokeFactory('example.ttwpage', 'tp')
+        self.folder.invokeFactory('example.fspage', 'fp')
     
     def test_folderish(self):
         
@@ -80,11 +82,18 @@ class IntegrationTests(ptc.PloneTestCase):
     
     def test_grokking_of_class(self):
         
-        # Demonstrate that classes deriving from api.Item or api.Container
+        # Demonstrate that classes deriving from Item or Container
         # will be initialised 
         
         self.failUnless(hasattr(PyPage, 'body'))
         self.assertEquals("Body text goes here", PyPage.body)
+        
+    def test_grokking_of_forms(self):
+        request = self.folder.REQUEST
+        addview = getMultiAdapter((self.folder, request), name=u"add-example.fspage")
+        addform = addview._form
+        fspage = addform.createAndAdd({})
+        editview = getMultiAdapter((fspage, request), name=u"edit")
 
 def test_suite():
     return unittest.TestSuite([unittest.makeSuite(IntegrationTests)])

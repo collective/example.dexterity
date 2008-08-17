@@ -20,12 +20,11 @@ to split our form fields into two fieldsets.
 """
 
 from five import grok
-from plone.dexterity import api as dexterity
+from plone import dexterity
 
 from zope import schema
 
 from z3c.form import group, field
-from plone.z3cform import layout
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 
 class IFSPage(dexterity.Schema):
@@ -65,17 +64,11 @@ class ExtraFieldsGroup(group.Group):
     label = u"Extra fields"
 
 class AddForm(dexterity.AddForm):
+    dexterity.portal_type('example.fspage')
     fields = fields
     groups = (ExtraFieldsGroup,)
-    portal_type = 'example.fspage'
-
-# TODO: Turn into simple wrapper, and make optional with grokker
-import plone.dexterity.browser.add
-class AddView(plone.dexterity.browser.add.DefaultAddView):
-    form = AddForm
 
 class EditForm(dexterity.EditForm):
+    grok.context(IFSPage)
     fields = fields
     groups = (ExtraFieldsGroup,)
-
-EditView = layout.wrap_form(EditForm) # TODO: Make optional with grokker

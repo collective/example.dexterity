@@ -29,16 +29,14 @@ from zope import schema
 from zope.annotation.interfaces import IAnnotatable
 from zope.annotation import factory
 
-from plone.dexterity import api as dexterity
+from plone import dexterity
 
 from BTrees.OOBTree import OOSet
 
 class ITagging(dexterity.Schema):
     """Behavior interface to make a type support tagging.
     """
-    
     dexterity.order_before(enabled='description')
-    dexterity.omitted('tags')
     dexterity.fieldset('tagging', label=u"Tagging", fields=['enabled', 'tags'])
     
     enabled = schema.Bool(title=u"Tagging enabled",
