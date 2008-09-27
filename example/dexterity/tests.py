@@ -91,7 +91,7 @@ class IntegrationTests(ptc.PloneTestCase):
     def test_grokking_of_forms(self):
         request = self.folder.REQUEST
         addview = getMultiAdapter((self.folder, request), name=u"add-example.fspage")
-        addform = addview._form
+        addform = addview.form_instance
         fspage = addform.createAndAdd({})
         editview = getMultiAdapter((fspage, request), name=u"edit")
 
