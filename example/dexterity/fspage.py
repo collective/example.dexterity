@@ -7,7 +7,7 @@ directives seen in pypage.py, if you so wish.
 
 Then, we define the content class. This derives from dexterity.Item (there is
 also dexterity.Container for folderish types) and declares its portal type
-using the dexterity.portal_type() directive. The construct ensures that all
+with the portal_type class variable. The construct ensures that all
 the fields in the interface are set correctly.
 
 Next, we define a view called @@view. This will look for a template in
@@ -43,7 +43,7 @@ class IFSPage(dexterity.Schema):
 
 class FSPage(dexterity.Item):
     grok.implements(IFSPage)
-    dexterity.portal_type('example.fspage')
+    portal_type = 'example.fspage'
     
     def __init__(self, id=None, title=None, description=None, body=None, details=None):
         self.id = id # required - or call super() with this argument
@@ -64,7 +64,7 @@ class ExtraFieldsGroup(group.Group):
     label = u"Extra fields"
 
 class AddForm(dexterity.AddForm):
-    dexterity.portal_type('example.fspage')
+    portal_type = 'example.fspage'
     fields = fields
     groups = (ExtraFieldsGroup,)
 
