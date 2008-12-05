@@ -20,7 +20,7 @@ to split our form fields into two fieldsets.
 """
 
 from five import grok
-from plone import dexterity
+from plone.directives import dexterity
 
 from zope import schema
 

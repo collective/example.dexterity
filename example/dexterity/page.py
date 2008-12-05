@@ -14,7 +14,7 @@ view class is called "View". We specify that it is a view for any IPage
 """
 
 from five import grok
-from plone import dexterity
+from plone.directives import dexterity
 
 class IPage(dexterity.Schema):
     dexterity.model("models/page.xml")

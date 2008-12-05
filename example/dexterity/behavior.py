@@ -21,7 +21,7 @@ that do.
 
 from persistent import Persistent
 
-from zope.interface import implements, alsoProvides, Interface
+from zope.interface import implements, alsoProvides
 from zope.component import adapts
 
 from zope import schema
@@ -29,7 +29,7 @@ from zope import schema
 from zope.annotation.interfaces import IAnnotatable
 from zope.annotation import factory
 
-from plone import dexterity
+from plone.directives import dexterity
 
 from BTrees.OOBTree import OOSet
 

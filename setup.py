@@ -27,6 +27,7 @@ setup(name='example.dexterity',
           'setuptools',
           'plone.app.z3cform',
           'plone.dexterity',
+          'plone.directives.dexterity',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

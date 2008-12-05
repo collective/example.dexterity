@@ -14,7 +14,7 @@ z3c.form API. Take a look at fspage.py to see a more complete example of that.
 
 from five import grok
 from zope import schema
-from plone import dexterity
+from plone.directives import dexterity
 
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 
