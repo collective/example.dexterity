@@ -19,7 +19,7 @@ setup_product()
 ptc.setupPloneSite(products=['example.dexterity'])
 
 
-BENCHMARK_REPS = 50
+BENCHMARK_REPS = 2
 def benchmark(func):
     def benchmarked_func(self):
         # prime the pumps
