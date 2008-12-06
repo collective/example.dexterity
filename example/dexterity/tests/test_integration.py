@@ -70,8 +70,8 @@ class IntegrationTests(ptc.PloneTestCase):
         # Demonstrate that schemata defined with a model() are grokked,
         # causing fields from the XML file to be added to the interface.
         
-        self.failUnless('title' in IPage)
-        self.assertEquals(u"Page title", IPage['title'].title)
+        self.failUnless('body' in IPage)
+        self.assertEquals(u"Body text", IPage['body'].title)
     
     def test_grokking_of_class(self):
         

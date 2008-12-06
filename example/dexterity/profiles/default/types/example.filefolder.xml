@@ -26,7 +26,9 @@
  <property name="model_file">example.dexterity:models/folder.xml</property>
  
  <!-- List of enabled behaviors -->
- <property name="behaviors"/>
+ <property name="behaviors">
+     <element value="plone.app.dexterity.behaviors.metadata.IDexterityDublinCore" />
+ </property>
  
  <!-- View information -->
  <property name="default_view">folder_listing</property>

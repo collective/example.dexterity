@@ -25,8 +25,8 @@ class IPyPage(dexterity.Schema):
     dexterity.fieldset('extra', label=u"Extra info", fields=['footer', 'dummy'])    
     dexterity.widget(body='plone.app.z3cform.wysiwyg.WysiwygFieldWidget', # we can use a dotted name...
                      footer=WysiwygFieldWidget)                           # or an actual class
-    
-    title = schema.TextLine(title=u"Title")
+    # (using an actual widget class is recommended,
+    # as missing widgets will be noticed at compile time)
     
     summary = schema.Text(title=u"Summary",
                           description=u"Summary of the body",
@@ -41,9 +41,8 @@ class IPyPage(dexterity.Schema):
     
     dummy = schema.Text(title=u"Dummy")
     
-    
     secret = schema.TextLine(title=u"Secret", default=u"Secret stuff")
-    
+
 
 class PyPage(dexterity.Item):
     grok.implements(IPyPage)

@@ -29,11 +29,6 @@ from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 
 class IFSPage(dexterity.Schema):
     
-    title = schema.TextLine(title=u"Title")
-    
-    description = schema.Text(title=u"Description",
-                          description=u"Summary of the body")
-    
     body = schema.Text(title=u"Body text",
                        required=False,
                        default=u"Body text goes here")
@@ -45,10 +40,8 @@ class FSPage(dexterity.Item):
     grok.implements(IFSPage)
     portal_type = 'example.fspage'
     
-    def __init__(self, id=None, title=None, description=None, body=None, details=None):
+    def __init__(self, id=None, body=None, details=None):
         self.id = id # required - or call super() with this argument
-        self.title = title
-        self.description = description
         self.body = body
         self.details = details
 

@@ -19,17 +19,11 @@
  <!-- Schema - here described inline for TTW editing -->
  <property name="schema"></property>
  <property name="model_source">
-  &lt;model xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
+  &lt;model xmlns="http://namespaces.plone.org/supermodel/schema"
+      xmlns:form="http://namespaces.plone.org/dexterity/form" &gt;
       &lt;schema&gt;
-          &lt;field name="title" type="zope.schema.TextLine"&gt;
-              &lt;title&gt;Title&lt;/title&gt;
-              &lt;required&gt;True&lt;/required&gt;
-          &lt;/field&gt;
-          &lt;field name="description" type="zope.schema.Text"&gt;
-              &lt;title&gt;Description&lt;/title&gt;
-              &lt;required&gt;False&lt;/required&gt;
-          &lt;/field&gt;
-          &lt;field name="body" type="zope.schema.Text"&gt;
+          &lt;field name="body" type="zope.schema.Text"
+              form:widget="plone.app.z3cform.wysiwyg.WysiwygFieldWidget" &gt;
               &lt;title&gt;Body text&lt;/title&gt;
               &lt;required&gt;False&lt;/required&gt;
               &lt;default&gt;Default body text&lt;/default&gt;
@@ -40,7 +34,9 @@
  <property name="model_file"></property>
  
  <!-- List of enabled behaviors -->
- <property name="behaviors"/>
+ <property name="behaviors">
+     <element value="plone.app.dexterity.behaviors.metadata.IDexterityDublinCore" />
+ </property>
  
  <!-- View information -->
  <property name="default_view">view</property>
