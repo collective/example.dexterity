@@ -26,7 +26,7 @@ setup(name='example.dexterity',
       install_requires=[
           'setuptools',
           'plone.app.z3cform',
-          'plone.dexterity',
+          'plone.app.dexterity',
           'plone.directives.dexterity',
           # -*- Extra requirements: -*-
       ],
