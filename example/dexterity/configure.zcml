@@ -8,6 +8,7 @@
 
     <!-- Include our dependencies -->
     <include package="plone.app.dexterity" />
+    <include package="plone.directives.dexterity" />
     
     <!-- Grok the package to initialise schema interfaces and content classes -->
     <grok:grok package="." />

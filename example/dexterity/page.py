@@ -14,10 +14,10 @@ view class is called "View". We specify that it is a view for any IPage
 """
 
 from five import grok
-from plone.directives import dexterity
+from plone.directives import form
 
-class IPage(dexterity.Schema):
-    dexterity.model("models/page.xml")
+class IPage(form.Schema):
+    form.model("models/page.xml")
     
     # It is possible to add additional fields and methods can be added here
     # if necessary. However, without a custom class, we usually can't

@@ -29,15 +29,15 @@ from zope import schema
 from zope.annotation.interfaces import IAnnotatable
 from zope.annotation import factory
 
-from plone.directives import dexterity
+from plone.directives import form
 
 from BTrees.OOBTree import OOSet
 
-class ITagging(dexterity.Schema):
+class ITagging(form.Schema):
     """Behavior interface to make a type support tagging.
     """
-    dexterity.order_before(enabled='description')
-    dexterity.fieldset('tagging', label=u"Tagging", fields=['enabled', 'tags'])
+    form.order_before(enabled='description')
+    form.fieldset('tagging', label=u"Tagging", fields=['enabled', 'tags'])
     
     enabled = schema.Bool(title=u"Tagging enabled",
                           required=False,
@@ -48,7 +48,7 @@ class ITagging(dexterity.Schema):
                        value_type=schema.Choice(values=["Tag 1", "Tag 2", "Tag 3"]),
                        required=False)
 
-alsoProvides(ITagging, dexterity.IFormFieldProvider)
+alsoProvides(ITagging, form.IFormFieldProvider)
 
 class TaggingAnnotations(Persistent):
     """Persistent storage for tags in annotations. This uses the "persistent 

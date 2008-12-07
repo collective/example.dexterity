@@ -1,7 +1,7 @@
 """This file contains an example of a more conventional filesystem page type.
 It has a schema, add- and edit- forms using z3c.form and a class.
 
-We first define a standard schema. Deriving from dexterity.Schema is optional,
+We first define a standard schema. Deriving from form.Schema is optional,
 but demonstrates conistency and makes it possible to use the type of
 directives seen in pypage.py, if you so wish.
 
@@ -20,14 +20,14 @@ to split our form fields into two fieldsets.
 """
 
 from five import grok
-from plone.directives import dexterity
+from plone.directives import dexterity, form
 
 from zope import schema
 
 from z3c.form import group, field
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 
-class IFSPage(dexterity.Schema):
+class IFSPage(form.Schema):
     
     body = schema.Text(title=u"Body text",
                        required=False,

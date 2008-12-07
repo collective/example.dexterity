@@ -14,34 +14,48 @@ z3c.form API. Take a look at fspage.py to see a more complete example of that.
 
 from five import grok
 from zope import schema
-from plone.directives import dexterity
 
+from plone.directives import form, dexterity
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 
-class IPyPage(dexterity.Schema):
+class IPyPage(form.Schema):
     
-    dexterity.omitted('dummy')
-    dexterity.mode(secret='hidden')
-    dexterity.fieldset('extra', label=u"Extra info", fields=['footer', 'dummy'])    
-    dexterity.widget(body='plone.app.z3cform.wysiwyg.WysiwygFieldWidget', # we can use a dotted name...
-                     footer=WysiwygFieldWidget)                           # or an actual class
-    # (using an actual widget class is recommended,
-    # as missing widgets will be noticed at compile time)
+    # The default fieldset
     
-    summary = schema.Text(title=u"Summary",
-                          description=u"Summary of the body",
-                          readonly=True)
+    summary = schema.Text(
+            title=u"Summary",
+            description=u"Summary of the body",
+            readonly=True
+        )
     
-    body = schema.Text(title=u"Body text",
-                       required=False,
-                       default=u"Body text goes here")
-                       
-    footer = schema.Text(title=u"Footer text",
-                       required=False)
+    body = schema.Text(
+            title=u"Body text",
+            required=False,
+            default=u"Body text goes here"
+        )
+    form.widget(body=WysiwygFieldWidget)
     
-    dummy = schema.Text(title=u"Dummy")
+    # Extra information fieldset
+    form.fieldset('extra', label=u"Extra info", fields=['footer', 'dummy'])    
     
-    secret = schema.TextLine(title=u"Secret", default=u"Secret stuff")
+    footer = schema.Text(
+            title=u"Footer text",
+            required=False
+        )
+    form.widget(footer=WysiwygFieldWidget)
+    
+    dummy = schema.Text(
+            title=u"Dummy"
+        )
+    form.omitted('dummy')
+    
+    # A hidden field, not in any fieldset
+    
+    secret = schema.TextLine(
+            title=u"Secret",
+            default=u"Secret stuff"
+        )
+    form.mode(secret='hidden')
 
 
 class PyPage(dexterity.Item):

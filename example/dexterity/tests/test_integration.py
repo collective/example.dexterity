@@ -72,15 +72,7 @@ class IntegrationTests(ptc.PloneTestCase):
         
         self.failUnless('body' in IPage)
         self.assertEquals(u"Body text", IPage['body'].title)
-    
-    def test_grokking_of_class(self):
-        
-        # Demonstrate that classes deriving from Item or Container
-        # will be initialised 
-        
-        self.failUnless(hasattr(PyPage, 'body'))
-        self.assertEquals("Body text goes here", PyPage.body)
-        
+            
     def test_grokking_of_forms(self):
         request = self.folder.REQUEST
         addview = getMultiAdapter((self.folder, request), name=u"add-example.fspage")
