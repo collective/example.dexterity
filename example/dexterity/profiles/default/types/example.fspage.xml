@@ -12,8 +12,11 @@
  
  <property name="filter_content_types">False</property>
  <property name="allowed_content_types"/>
- 
- <property name="klass">example.dexterity.fspage.FSPage</property>
+
+ <!-- Note: we have registered our own factory, and so we do not need to set
+      the klass property, which is used by Dexterity's default factory.
+   -->
+ <property name="factory">example.fspage</property>
  <property name="add_permission">Add portal content</property>
  
  <!-- Schema - here described inline for TTW editing -->
