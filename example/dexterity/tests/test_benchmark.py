@@ -18,7 +18,6 @@ def setup_product():
 setup_product()
 ptc.setupPloneSite(products=['example.dexterity'])
 
-
 BENCHMARK_REPS = 1
 def benchmark(func):
     def benchmarked_func(self):
@@ -65,7 +64,7 @@ class Benchmarks(ptc.FunctionalTestCase):
     
     @benchmark
     def test_dexterity_page_addform(self):
-        self.browser.open(self.portal_url + '@@add-dexterity-content/example.ttwpage')
+        self.browser.open(self.portal_url + '++add++example.ttwpage')
 
     @benchmark
     def test_create_AT_page(self):
@@ -76,7 +75,7 @@ class Benchmarks(ptc.FunctionalTestCase):
 
     @benchmark
     def test_create_dexterity_page(self):
-        self.browser.open(self.portal_url + '@@add-dexterity-content/example.ttwpage')
+        self.browser.open(self.portal_url + '++add++example.ttwpage')
         self.browser.getControl('Title').value = 'dexdoc2'
         self.browser.getControl('Save').click()
         # XXX change this once we have title-to-id functionality
