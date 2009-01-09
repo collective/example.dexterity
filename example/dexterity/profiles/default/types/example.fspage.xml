@@ -26,7 +26,7 @@
  
  <!-- List of enabled behaviors -->
  <property name="behaviors">
-     <element value="plone.app.dexterity.behaviors.metadata.IDexterityDublinCore" />
+     <element value="plone.app.dexterity.behaviors.metadata.IDublinCore" />
      <element value="example.dexterity.behavior.ITagging" />
  </property>
  
