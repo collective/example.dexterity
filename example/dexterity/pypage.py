@@ -60,7 +60,6 @@ class IPyPage(form.Schema):
 
 class PyPage(dexterity.Item):
     grok.implements(IPyPage)
-    portal_type = 'example.pypage'
 
     @property
     def summary(self):
