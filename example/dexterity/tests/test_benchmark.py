@@ -78,8 +78,7 @@ class Benchmarks(ptc.FunctionalTestCase):
         self.browser.open(self.portal_url + '++add++example.ttwpage')
         self.browser.getControl('Title').value = 'dexdoc2'
         self.browser.getControl('Save').click()
-        # XXX change this once we have title-to-id functionality
-        self.failUnless('example.ttwpage' in self.browser.url)
+        self.failUnless('dexdoc2' in self.browser.url)
 
 
 def test_suite():
