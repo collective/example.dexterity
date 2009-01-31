@@ -44,7 +44,14 @@ class IntegrationTests(ptc.PloneTestCase):
         
         self.failUnless('tp' in self.folder.ff)
         self.assertEquals('Test title', self.folder.ff['tp'].Title())
+    
+    def test_folderish_default_view(self):
         
+        self.folder.invokeFactory('example.filefolder', 'ff')
+        self.folder.ff.invokeFactory('example.ttwpage', id="tp", title="TTW Page")
+        self.folder.ff.setDefaultPage('tp')
+        self.assertEquals('tp', self.folder.ff.defaultView())
+    
     def test_attributes_and_reindexing(self):
         
         # Demonstrate that dynamic types such as example.ttwpage 
