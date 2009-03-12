@@ -2,6 +2,7 @@ import gc
 from time import time
 import unittest
 
+from Testing import ZopeTestCase as ztc
 from Products.Five import zcml
 from Products.Five.testbrowser import Browser
 from Products.PloneTestCase import PloneTestCase as ptc
@@ -9,11 +10,11 @@ from Products.PloneTestCase.layer import onsetup
 
 import example.dexterity
 
-
 @onsetup
 def setup_product():
     zcml.load_config('meta.zcml', example.dexterity)
     zcml.load_config('configure.zcml', example.dexterity)
+    ztc.installPackage('plone.app.relations')
 
 setup_product()
 ptc.setupPloneSite(products=['example.dexterity'])
