@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <model xmlns="http://namespaces.plone.org/supermodel/schema"
-       xmlns:form="http://namespaces.plone.org/dexterity/form">
+       xmlns:form="http://namespaces.plone.org/supermodel/form">
     
     <!-- This model is loaded at startup and used to populate the IPage
          interface in page.py.

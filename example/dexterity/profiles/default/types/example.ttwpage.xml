@@ -20,7 +20,7 @@
  <property name="schema"></property>
  <property name="model_source">
   &lt;model xmlns="http://namespaces.plone.org/supermodel/schema"
-      xmlns:form="http://namespaces.plone.org/dexterity/form" &gt;
+      xmlns:form="http://namespaces.plone.org/supermodel/form" &gt;
       &lt;schema&gt;
           &lt;field name="body" type="zope.schema.Text"
               form:widget="plone.app.z3cform.wysiwyg.WysiwygFieldWidget" &gt;
