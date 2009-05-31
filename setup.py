@@ -25,10 +25,7 @@ setup(name='example.dexterity',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'plone.app.z3cform',
           'plone.app.dexterity',
-          'plone.directives.dexterity',
-          # -*- Extra requirements: -*-
       ],
       entry_points="""
       [z3c.autoinclude.plugin]
