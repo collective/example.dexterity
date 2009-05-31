@@ -18,7 +18,7 @@
  </property>
  
  <property name="klass">plone.dexterity.content.Container</property>
- <property name="add_permission">Add portal content</property>
+ <property name="add_permission">cmf.AddPortalContent</property>
  
  <!-- Schema - here loaded from a file relative to a package -->
  <property name="schema"></property>

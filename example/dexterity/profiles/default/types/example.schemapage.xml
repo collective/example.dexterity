@@ -22,7 +22,7 @@
  <property name="klass">plone.dexterity.content.Item</property>
  
  <!-- add permission -->
- <property name="add_permission">Add portal content</property>
+ <property name="add_permission">cmf.AddPortalContent</property>
  
  <!-- enabled behaviors -->
  <property name="behaviors">

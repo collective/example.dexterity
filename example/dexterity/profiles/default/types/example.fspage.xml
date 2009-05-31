@@ -17,7 +17,7 @@
       the klass property, which is used by Dexterity's default factory.
    -->
  <property name="factory">example.fspage</property>
- <property name="add_permission">Add portal content</property>
+ <property name="add_permission">cmf.AddPortalContent</property>
  
  <!-- Schema - here described inline for TTW editing -->
  <property name="schema">example.dexterity.fspage.IFSPage</property>

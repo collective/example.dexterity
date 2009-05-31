@@ -14,7 +14,7 @@
  <property name="allowed_content_types"/>
  
  <property name="klass">plone.dexterity.content.Item</property>
- <property name="add_permission">Add portal content</property>
+ <property name="add_permission">cmf.AddPortalContent</property>
  
  <!-- Schema - here described inline for TTW editing -->
  <property name="schema"></property>
