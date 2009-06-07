@@ -30,7 +30,7 @@
     <plone:behavior
         title="Tagging support"
         description="An example behavior with a field"
-        interface=".behavior.ITagging"
+        provides=".behavior.ITagging"
         factory=".behavior.Tagging"
         for="zope.annotation.interfaces.IAnnotatable"
         />
