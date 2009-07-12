@@ -14,7 +14,6 @@ import example.dexterity
 def setup_product():
     zcml.load_config('meta.zcml', example.dexterity)
     zcml.load_config('configure.zcml', example.dexterity)
-    ztc.installPackage('plone.app.relations')
 
 setup_product()
 ptc.setupPloneSite(products=['example.dexterity'])
