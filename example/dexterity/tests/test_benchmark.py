@@ -2,7 +2,6 @@ import gc
 from time import time
 import unittest
 
-from Testing import ZopeTestCase as ztc
 from Products.Five import zcml
 from Products.Five.testbrowser import Browser
 from Products.PloneTestCase import PloneTestCase as ptc
@@ -18,7 +17,7 @@ def setup_product():
 setup_product()
 ptc.setupPloneSite(products=['example.dexterity'])
 
-BENCHMARK_REPS = 0
+BENCHMARK_REPS = 20
 def benchmark(func):
     def benchmarked_func(self):
         # prime the pumps
