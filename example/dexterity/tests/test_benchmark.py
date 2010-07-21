@@ -2,20 +2,21 @@ import gc
 from time import time
 import unittest
 
-from Products.Five import zcml
 from Products.Five.testbrowser import Browser
 from Products.PloneTestCase import PloneTestCase as ptc
-from Products.PloneTestCase.layer import onsetup
+from Products.Five import zcml
 
-import example.dexterity
+from plone.app.dexterity.tests.layer import DexterityLayer
 
-@onsetup
-def setup_product():
-    zcml.load_config('meta.zcml', example.dexterity)
-    zcml.load_config('configure.zcml', example.dexterity)
+class DexterityExampleLayer(DexterityLayer):
+    @classmethod
+    def setUp(cls):
+        import example.dexterity.tests
+        zcml.load_config('test.zcml', example.dexterity.tests)
 
-setup_product()
-ptc.setupPloneSite(products=['example.dexterity'])
+    @classmethod
+    def tearDown(cls):
+        pass
 
 BENCHMARK_REPS = 20
 def benchmark(func):
@@ -33,7 +34,11 @@ def benchmark(func):
         print "\n%s: %s\n" % (func.__name__, elapsed)
     return benchmarked_func
 
+ptc.setupPloneSite(products=['example.dexterity'])
+
 class Benchmarks(ptc.FunctionalTestCase):
+    
+    layer = DexterityExampleLayer
 
     def afterSetUp(self):
         self.browser = Browser()

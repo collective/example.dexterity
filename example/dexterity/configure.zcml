@@ -34,5 +34,5 @@
         factory=".behavior.Tagging"
         for="zope.annotation.interfaces.IAnnotatable"
         />
-        
+
 </configure>

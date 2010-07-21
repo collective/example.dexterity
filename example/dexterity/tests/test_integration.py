@@ -60,7 +60,7 @@ class IntegrationTests(ptc.PloneTestCase):
         
         self.folder.invokeFactory('example.ttwpage', 'tp', title="Old title")
         self.assertEquals("Old title", self.folder.tp.title)
-        self.assertEquals(u"Default body text", self.folder.tp.body)
+        self.assertEquals(u"Default body text", self.folder.tp.body.output)
         
         self.folder.tp.title = "New Title"
         self.folder.tp.body = u"Sample body"

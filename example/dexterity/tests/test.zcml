@@ -1,0 +1,12 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+  
+    <browser:page
+      for="plone.dexterity.schema.generated.plone_0_example_2_ttwpage"
+      name="view"
+      template="page_view.pt"
+      permission="zope2.View"
+      />
+  
+</configure>
