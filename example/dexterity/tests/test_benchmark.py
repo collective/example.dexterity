@@ -84,6 +84,28 @@ class Benchmarks(ptc.FunctionalTestCase):
         self.browser.getControl('Save').click()
         self.failUnless('dexdoc2' in self.browser.url)
 
+    @benchmark
+    def test_AT_page_editform(self):
+        self.browser.open(self.portal_url + 'atdoc/edit')
+    
+    @benchmark
+    def test_dexterity_page_editform(self):
+        self.browser.open(self.portal_url + 'dexdoc/edit')
+
+    @benchmark
+    def test_edit_AT_page(self):
+        self.browser.open(self.portal_url + 'atdoc/edit')
+        self.browser.getControl('Title').value = 'New atdoc title'
+        self.browser.getControl('Save').click()
+        self.failUnless('atdoc' in self.browser.url)
+
+    @benchmark
+    def test_edit_dexterity_page(self):
+        self.browser.open(self.portal_url + 'dexdoc/edit')
+        self.browser.getControl('Title').value = 'New dexdoc title'
+        self.browser.getControl('Save').click()
+        self.failUnless('dexdoc' in self.browser.url)
+
 
 def test_suite():
     suite = unittest.TestSuite()
