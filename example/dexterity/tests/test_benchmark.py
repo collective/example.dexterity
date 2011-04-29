@@ -25,13 +25,16 @@ def benchmark(func):
         func(self)
         # temporarily disable garbage collection
         gc.disable()
-        t0 = time()
+        times = []
         for i in xrange(0, BENCHMARK_REPS):
+            t0 = time()
             func(self)
-        t1 = time()
+            t1 = time()
+            elapsed = t1 - t0
+            times.append(elapsed)
         gc.enable()
-        elapsed = t1 - t0
-        print "\n%s: %s\n" % (func.__name__, elapsed)
+        print "\n%32s:  best: %.4f  average: %.4f\n" % (
+            func.__name__, min(times), sum(times) / BENCHMARK_REPS)
     return benchmarked_func
 
 ptc.setupPloneSite(products=['example.dexterity'])
